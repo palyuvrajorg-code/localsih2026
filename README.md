@@ -1,4 +1,4 @@
-# Xopun
+# SMRITI
 
 A Flutter cognitive-care **local demo**, built around an intentionally minimal patient experience. Assamese is the default, with Bengali and English. The patient home offers one suggested activity, memories and today's tasks. Family management is behind a caregiver-created PIN.
 
