@@ -85,17 +85,7 @@ class _WelcomeState extends State<Welcome> {
       body: SafeArea(
         child: PageBody(
           children: [
-            const SizedBox(height: 36),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(32),
-              child: Image.asset(
-                'assets/images/logo.jpeg',
-                width: 84,
-                height: 84,
-                fit: BoxFit.cover,
-              ),
-            ),
-            gap,
+            const SizedBox(height: 20),
             const Text(
               'smriti',
               textAlign: TextAlign.center,
@@ -114,10 +104,15 @@ class _WelcomeState extends State<Welcome> {
               ),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 36),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(28),
-              child: Image.asset(gameImages[0], height: 220, fit: BoxFit.cover),
+            const SizedBox(height: 24),
+            SizedBox(
+              height: 300,
+              width: double.infinity,
+              child: Image.asset(
+                'assets/images/logo.jpeg',
+                fit: BoxFit.contain,
+                alignment: Alignment.center,
+              ),
             ),
             gap,
             Text(
