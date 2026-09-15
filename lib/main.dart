@@ -10,6 +10,7 @@ import 'voice.dart';
 import 'catalog.dart';
 import 'games.dart';
 import 'caregiver.dart';
+import 'app/smriti_root.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +21,34 @@ Future<void> main() async {
 class SmritiApp extends StatelessWidget {
   final AppStore store;
   const SmritiApp({super.key, required this.store});
+  @override
+  Widget build(BuildContext context) => AnimatedBuilder(
+    animation: store,
+    builder: (context, _) => MaterialApp(
+      title: 'SMRITI · SIH 2026',
+      debugShowCheckedModeBanner: false,
+      theme: appTheme(),
+      locale: Locale(store.language == 'as' ? 'bn' : store.language),
+      supportedLocales: const [Locale('en'), Locale('bn')],
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      builder: (context, child) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          textScaler: TextScaler.linear(
+            (store.fontSize / 20) * MediaQuery.textScalerOf(context).scale(1),
+          ),
+        ),
+        child: child!,
+      ),
+      home: SmritiRoot(store: store),
+    ),
+  );
+}
+
+/// Backwards-compatible test/embedding alias while the product is branded Smriti.
+class XopunApp extends StatelessWidget {
+  final AppStore store;
+  const XopunApp({super.key, required this.store});
+
   @override
   Widget build(BuildContext context) => AnimatedBuilder(
     animation: store,
@@ -41,11 +70,6 @@ class SmritiApp extends StatelessWidget {
       home: store.onboarded ? PatientHome(store: store) : Welcome(store: store),
     ),
   );
-}
-
-/// Backwards-compatible test/embedding alias while the product is branded Smriti.
-class XopunApp extends SmritiApp {
-  const XopunApp({super.key, required super.store});
 }
 
 class Welcome extends StatefulWidget {
